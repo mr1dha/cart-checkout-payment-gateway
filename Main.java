@@ -3,7 +3,7 @@ import marketplace.*;
 class Main {
 	public static void main(String[] args) {
 		Gopay gopay = new Gopay (250);
-		Dana dana = new Dana (500);
+		Dana dana = new Dana (100);
 		Ovo ovo = new Ovo (1000);
 
 		Cart cart = new Cart ();
