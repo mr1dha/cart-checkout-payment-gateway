@@ -30,7 +30,7 @@ public class Cart implements Checkout {
 				checkoutStatus = true;
 			else
 				System.out.println("\nPayment Failed, Out of balance!");
-			System.out.println("Your "+channel.getChannelName()+" balance is = "+channel.getBalance());
+			System.out.println("Your remaining "+channel.getChannelName()+" balance is = IDR"+channel.getBalance());
 		}
 		return checkoutStatus;
 	}
