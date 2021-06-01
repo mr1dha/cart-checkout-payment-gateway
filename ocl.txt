@@ -1,5 +1,0 @@
-context Cart::checkout(): boolean
-	pre : self.channel <> null
-	pre : self.products->size() > 0
-	pre : self.channel.getBalance() >= self.products.getPrice()
-
