@@ -1,0 +1,14 @@
+package marketplace
+
+context Product::Product(productId: String, price: Real)
+    post : self.productId = productId and self.price = price
+
+context Product::getPrice() : Real
+    pre  : self.price <> null
+    post : result = self.price
+
+context Product::getProductId() : String
+    pre  : self.productId <> null
+    post : result = self.productId
+    
+endpackage

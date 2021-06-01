@@ -1,0 +1,39 @@
+package marketplace
+
+context CheckoutButton::CheckoutButton()
+    post : self.channel = null
+    
+
+context Cart::connectTo (channel : PaymentGateway)
+    post : self.channel = channel
+
+
+context Cart::checkout() : Boolean
+    init : false
+    inv  : self.products->size() >= 0
+    pre  : self.isEmpty() <> true 
+                and self.channel <> null
+    post : if self.channel.pay(calculatePrice()) = true
+                then result = true
+
+    
+context Cart::calculatePrice() : Real
+    init : 0
+    pre  : self.products->size() > 0
+    post : self.products->iterate(p: Product, sum: Real=0 
+                | sum + p.getPrice()
+                and result = sum)
+
+
+context Cart::addProduct(product: Product)
+    inv  : self.products->size() >= 0
+    pre  : product <> null
+    post : products->size() – products@pre->size() = 1
+                and products->exists(p: Product | p = product)
+
+    
+context Cart::isEmpty() : Boolean
+    init : false
+    post : result = self.products->size() == 0
+
+endpackage

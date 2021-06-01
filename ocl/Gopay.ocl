@@ -1,0 +1,38 @@
+package marketplace
+
+context Gopay::Gopay()
+    post : self.balance = 0
+
+
+context Gopay::Gopay(ammount: Real)
+    post : self.balance = ammount
+
+
+context Gopay::pay(ammount: Real) : Boolean
+    init : false
+    inv  : self.balance >= 0
+    pre  : self.getBalance() >= ammount
+    post : self.withdraw(ammount)
+                and self@pre.getBalance() – self.getBalance() = ammount
+                and result = true
+
+
+context Gopay::topUp(ammount: Real)
+    inv  : self.balance >= 0
+    post : self.balance = self@pre.getBalance() + ammount
+
+
+context Gopay::withdraw(ammount: Real)
+    inv  : self.balance >= 0
+    post : self.balance = self@pre.getBalance() - ammount
+
+
+context Gopay::getBalance() : Real
+    post : result = self.getBalance()
+    
+
+context Gopay::getChannelName() : String
+    post : result = "Gopay"
+
+
+endpackage

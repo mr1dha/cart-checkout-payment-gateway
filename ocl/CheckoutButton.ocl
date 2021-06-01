@@ -1,0 +1,18 @@
+package marketplace
+
+context CheckoutButton::CheckoutButton()
+    psot : self.cart = null
+
+
+context CheckoutButton::connectTo (cart : Checkout)
+    post : self.cart = cart
+
+
+context CheckoutButton::pressed()
+    pre  : self.cart <> null
+    post : if cart.checkout() = true
+                then print "Checkout done succesfully!"
+            else
+                print "Checkout failed!"
+
+endpackage

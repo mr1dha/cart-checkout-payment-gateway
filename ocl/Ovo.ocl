@@ -1,0 +1,38 @@
+package marketplace
+
+context Ovo::Ovo()
+    post : self.balance = 0
+
+
+context Ovo::Ovo(ammount: Real)
+    post : self.balance = ammount
+
+
+context Ovo::pay(ammount: Real) : Boolean
+    init : false
+    inv  : self.balance >= 0
+    pre  : self.getBalance() >= ammount
+    post : self.withdraw(ammount)
+                and self@pre.getBalance() – self.getBalance() = ammount
+                and result = true
+
+
+context Ovo::topUp(ammount: Real)
+    inv  : self.balance >= 0
+    post : self.balance = self@pre.getBalance() + ammount
+
+
+context Ovo::withdraw(ammount: Real)
+    inv  : self.balance >= 0
+    post : self.balance = self@pre.getBalance() - ammount
+
+
+context Ovo::getBalance() : Real
+    post : result = self.getBalance()
+    
+
+context Ovo::getChannelName() : String
+    post : result = "Ovo"
+
+
+endpackage
