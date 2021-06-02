@@ -19,12 +19,14 @@ context Gopay::pay(ammount: Real) : Boolean
 
 context Gopay::topUp(ammount: Real)
     inv  : self.balance >= 0
-    post : self.balance = self@pre.getBalance() + ammount
+    post : self.balance + ammount
+                and self.balance = self@pre.getBalance() + ammount
 
 
 context Gopay::withdraw(ammount: Real)
     inv  : self.balance >= 0
-    post : self.balance = self@pre.getBalance() - ammount
+    post : self.balance - ammount
+                and self.balance = self@pre.getBalance() - ammount
 
 
 context Gopay::getBalance() : Real

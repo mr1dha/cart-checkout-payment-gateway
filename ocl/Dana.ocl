@@ -19,12 +19,14 @@ context Dana::pay(ammount: Real) : Boolean
 
 context Dana::topUp(ammount: Real)
     inv  : self.balance >= 0
-    post : self.balance = self@pre.getBalance() + ammount
+    post : self.balance + ammount
+                and self.balance = self@pre.getBalance() + ammount
 
 
 context Dana::withdraw(ammount: Real)
     inv  : self.balance >= 0
-    post : self.balance = self@pre.getBalance() - ammount
+    post : self.balance - ammount
+                and self.balance = self@pre.getBalance() - ammount
 
 
 context Dana::getBalance() : Real

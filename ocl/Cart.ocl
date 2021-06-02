@@ -29,7 +29,8 @@ context Cart::addProduct(product: Product)
     inv  : self.products->size() >= 0
     pre  : product <> null
     post : products->size() – products@pre->size() = 1
-                and products->exists(p: Product | p = product)
+                and products->exists(p: Product 
+                | p.getProductId() = product.getProductId())
 
     
 context Cart::isEmpty() : Boolean

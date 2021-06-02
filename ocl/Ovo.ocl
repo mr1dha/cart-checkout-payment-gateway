@@ -19,12 +19,14 @@ context Ovo::pay(ammount: Real) : Boolean
 
 context Ovo::topUp(ammount: Real)
     inv  : self.balance >= 0
-    post : self.balance = self@pre.getBalance() + ammount
+    post : self.balance + ammount
+                and self.balance = self@pre.getBalance() + ammount
 
 
 context Ovo::withdraw(ammount: Real)
     inv  : self.balance >= 0
-    post : self.balance = self@pre.getBalance() - ammount
+    post : self.balance - ammount
+                and self.balance = self@pre.getBalance() - ammount
 
 
 context Ovo::getBalance() : Real
