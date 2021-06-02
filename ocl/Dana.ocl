@@ -30,7 +30,7 @@ context Dana::withdraw(ammount: Real)
 
 
 context Dana::getBalance() : Real
-    post : result = self.getBalance()
+    post : result = self.balance
     
 
 context Dana::getChannelName() : String

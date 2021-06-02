@@ -30,7 +30,7 @@ context Ovo::withdraw(ammount: Real)
 
 
 context Ovo::getBalance() : Real
-    post : result = self.getBalance()
+    post : result = self.balance
     
 
 context Ovo::getChannelName() : String

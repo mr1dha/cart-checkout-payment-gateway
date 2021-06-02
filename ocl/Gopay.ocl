@@ -30,7 +30,7 @@ context Gopay::withdraw(ammount: Real)
 
 
 context Gopay::getBalance() : Real
-    post : result = self.getBalance()
+    post : result = self.balance
     
 
 context Gopay::getChannelName() : String
